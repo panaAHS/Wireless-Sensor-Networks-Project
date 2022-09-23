@@ -6,11 +6,15 @@ This assignment was part of the course Applications of Telecommunication Devices
 The following sensors were used to measure the desired characteristics:
 - HC-SR04 Ultrasonic Ranging Sensors
 - Led Matrix 8x8 Red with MAX7219
-- FSRs
+- Force Sensitive Resistors - Square
 - Servomotors
-- Touch sensors
+- Capacitve Touch Sensor Switch Modules
 - Bluetooth module HC05
-![image](https://user-images.githubusercontent.com/108996988/191971740-0eca8350-230c-4bdc-bd7e-4646189b507e.png)
+- Waveshare Flame Sensors
+- Buzzer 
+- LCDs 6x2 Character (I2C Protocol)
+- Green and Red LEDs
+
 
 
 
