@@ -8,7 +8,7 @@ The following sensors were used to measure the desired characteristics:
 - Led Matrix 8x8 Red with MAX7219
 - Force Sensitive Resistors - Square
 - Servomotors
-- Capacitve Touch Sensor Switch Modules
+- Capacitive Touch Sensor Switch Modules
 - Bluetooth module HC05
 - Waveshare Flame Sensors
 - Buzzers
