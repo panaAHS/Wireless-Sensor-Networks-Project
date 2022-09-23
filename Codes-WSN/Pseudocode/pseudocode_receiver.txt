@@ -1,0 +1,49 @@
+Include libraries
+Define nodes of network
+Initialize an object RF22
+Initialize LCD
+Make some helper variables and store the values of free slots in each parking
+
+Setup():
+	Open the Serial Port
+	Define RF22 characteristics
+	Define the routes for this network
+	Initialize LCD
+	Print text of free parking slots for each parking on LCD
+
+Loop():
+	Initialize RF22 parameters
+	Allocate the memory to receive the data
+
+	If(receive_packet=true){
+		Receive data and send acknowledgement
+		Print the node that sent the message
+		Split the packet in the four measurements
+		Print received_value
+	}
+
+	If(transmitter address == NODE_ADDRESS_1){
+		Store received value from transmitter to helper variable
+		If(received value from transmitter == Fire code){
+			Set parking free slots to 0
+			Print warning message to call the fire brigade in serial communication
+		}
+		else{
+                    Print parking 1 free slots to serial communication
+		}
+	}
+
+	Else If(transmitter address == NODE_ADDRESS_2){
+		Store received value from transmitter to helper variable
+                If(received value from transmitter == Fire code){
+			Set parking free slots to 0
+			Print warning message to call the fire brigade in serial communication
+		}
+	        else{
+                    Print parking 2 free slots to serial communication
+		}
+
+	}
+	Print text of free parking slots for each parking on LCD
+}
+

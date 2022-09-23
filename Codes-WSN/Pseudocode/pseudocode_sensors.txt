@@ -1,0 +1,86 @@
+Include necessary libraries
+Set the pins for all ultrasonic ranging sensors and led matrix
+Initialize Bytes of LED array and create an object of this type
+Set printByte function to turn ON specific LEDs of the array
+
+setup():
+	Set pins of all sensors to output/input mode
+	Begin serial communication
+
+loop():
+	Send pulse with ultrasonic sensor 1 (parking slot 1)
+	Calculate the distance between object and ultrasonic sensor 1
+	Print the distance of ultrasonic sensor 1 on serial communication
+	Send pulse with ultrasonic sensor 2 (parking slot 2)
+	Calculate the distance between object and ultrasonic sensor 2
+	Print the distance of ultrasonic sensor 2 on serial communication
+	Send pulse with ultrasonic sensor 3 (parking slot 3)
+	Calculate the distance between object and ultrasonic sensor 3
+	Print the distance of ultrasonic sensor 3 on serial communication
+	Send pulse with ultrasonic sensor 4 (parking slot 6)
+	Calculate the distance between object and ultrasonic sensor 4
+	Print the distance of ultrasonic sensor 4 on serial communication
+	Read and print on serial communication the distance of object from laser sensor at parking slot 4
+	Read and print on serial communication the distance of object from laser sensor at parking slot 5
+
+	if(distance1 > 6){//meaning if distance is bigger than a certain value then no car is occupying the parking slot
+		Set LED array to point to the first parking slot number 1 as it is the closest available
+		Set current parking slot value to 0//meaning it's not occupied by a car
+	}
+
+	else if(distance2 > 6){//meaning if distance is bigger than a certain value then no car is occupying the parking slot
+		Set LED array to point to the first parking slot number 2 as it is the closest available
+		Set current parking slot value to 0//meaning it's not occupied by a car
+	}
+
+	else if(distance3 > 6){//meaning if distance is bigger than a certain value then no car is occupying the parking slot
+		Set LED array to point to the first parking slot number 3 as it is the closest available
+		Set current parking slot value to 0//meaning it's not occupied by a car
+	}
+
+	else if(distance4 > 6){//meaning if distance is bigger than a certain value then no car is occupying the parking slot
+		Set LED array to point to the first parking slot number 4 as it is the closest available
+		Set current parking slot value to 0//meaning it's not occupied by a car
+	}
+
+	else if(distance5 > 6){//meaning if distance is bigger than a certain value then no car is occupying the parking slot
+		Set LED array to point to the first parking slot number 5 as it is the closest available
+		Set current parking slot value to 0//meaning it's not occupied by a car
+	}
+
+	else if(distance6 > 6){//meaning if distance is bigger than a certain value then no car is occupying the parking slot
+		Set LED array to point to the first parking slot number 6 as it is the closest available
+		Set current parking slot value to 0//meaning it's not occupied by a car
+	}
+
+	else{//no available slots
+		Set LED array to blank
+	}
+
+
+	if(distance1 < 6){//meaning if distance is lower than a certain value then a car is occupying the parking slot
+		Set current parking slot value to 1//meaning it is occupied by a car
+	}
+
+	else if(distance2 < 6){//meaning if distance is lower than a certain value then a car is occupying the parking slot
+		Set current parking slot value to 1//meaning it is occupied by a car
+	}
+
+	else if(distance3 < 6){//meaning if distance is lower than a certain value then a car is occupying the parking slot
+		Set current parking slot value to 1//meaning it is occupied by a car
+	}
+
+	else if(distance4 < 6){//meaning if distance is lower than a certain value then a car is occupying the parking slot
+		Set current parking slot value to 1//meaning it is occupied by a car
+	}
+
+	else if(distance5 < 6){//meaning if distance is lower than a certain value then a car is occupying the parking slot
+		Set current parking slot value to 1//meaning it is occupied by a car
+	}
+
+	else if(distance6 < 6){//meaning if distance is lower than a certain value then a car is occupying the parking slot
+		Set current parking slot value to 1//meaning it is occupied by a car
+	}
+
+	print all parking slot values on serial communication
+	Put a delay of 2 seconds

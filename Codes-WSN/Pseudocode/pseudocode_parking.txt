@@ -1,0 +1,155 @@
+Include libraries
+Define nodes of network
+Initialize object of RF22
+Initialize variables of LCD, sensors, servos and LEDs
+Define pins of sensors
+
+Setup():
+	Set input and output pins of sensors and LEDs
+	Initialize servo
+	Open serial port
+	Initialize LCD
+	Setup the appropriate messages, for the free parking slots, to be printed on the LCD
+	Set parking RED LEDs to be ON at the start
+	Define RF22 characteristics
+	Add all the routes
+	Create the random seed
+	
+Loop:
+	
+	if(Serial communication is available){
+		
+		Read incoming value from Arduino bluetooth(phone application)
+		Print incoming value on serial communication
+		while(incoming value is 9){
+			Print message "Control mode"
+			Delay 4 seconds
+			Read incoming value from Arduino bluetooth(phone application)
+			if(incoming value is 0){
+				Serial communication will ask the user how many are the total parking slots
+				Decode and print max parking slots on serial communication(48 is character '0' in ASCII)
+				
+			}
+			else if(incoming value is 1){ //car just entered parking 1
+				Increase number of reserved parking slots by 1
+				Print free parking slots on serial communication
+				Print the first line of parking LCD with message "Parking slots"
+				Calculate and store number of free slots in variable data
+				Print parking 1 free slots on serial communication
+				Print the second line of LCD with message "P1" + number of free parking slots for parking 1
+			}
+			else if(incoming value is 2){ //car just exited parking 1
+				Print the first line of parking LCD with message "Parking slots"
+				Decrease number of reserved parking slots by 1
+				Calculate and store number of free slots in variable data
+				Print free parking slots on serial communication
+				Print parking 1 free slots on serial communication
+				Print the second line of LCD with message "P1" + number of free parking slots for parking 1
+			}
+			else if(incoming value is 3){ //no cars in parking
+				Set number of reserved parking slots to 0
+				Print the first line of parking LCD with message "Parking slots"
+				Calculate and store number of free slots in variable data
+				Print free parking slots on serial communication
+				Print parking 1 free slots on serial communication
+				Print the second line of LCD with message "P1" + number of free parking slots for parking 1
+			}
+			else if(incoming value is 4){ //all parking slots are reserved
+				Set number of reserved parking slots to maximum
+				Print the first line of parking LCD with message "Parking slots"
+				Calculate and store number of free slots in variable data
+				Print free parking slots on serial communication
+				Print parking 1 free slots on serial communication
+				Print the second line of LCD with message "Sorry, no (free) spots"			
+			}
+			else if(incoming value is 5){ 
+				Raise both parking bars
+			}
+			else if(incoming value is 6){ 
+				Lower both parking bars
+			}
+		}
+	
+	}
+	
+	if(Fire sensor analog value is lower than 500){
+		Turn ON parking's exit green LEDs
+		Print warning message of fire on LCD
+		Turn ON parking's entrance red LEDs
+		Turn ON parking's exit green LEDs
+		Turn OFF parking's exit red LEDs
+		Raise both parking bars
+		Turn ON fire alarm(buzzer)
+		Turn OFF fire alarm(buzzer) after some time.
+		Print warning message of fire on serial communication
+		Print warning message of fire on LCD and empty all free slots
+	}	Store 1999 in variable data
+	
+	if(touch sensor is pressed){
+		Increase number of reserved parking slots by 1
+		if(reserved parking slots exceed maximum number of parking slots){
+			Set number of free parking slots to 0
+			Print free parking slots messages on both LCD and serial communication
+			Turn ON and OFF red and green LEDs of parking entrance respectively.			
+		}
+		else{
+			Turn ON and OFF green and red LEDs of parking entrance respectively.
+			Raise parking bar of entrance
+			Wait 3 seconds
+			Print the first line of parking LCD with message "Parking slots"
+			Calculate and store number of free slots in variable data
+			Print free parking slots on serial communication
+			Print parking 1 free slots on serial communication
+			Print the second line of LCD with message "P1" + number of free parking slots for parking 1
+			Wait 3 seconds
+			while(FSR sensor is still being pressed){
+				Wait
+			}
+			if(FSR sensor is not being pressed){
+				Lower entrance bar
+				Turn ON and OFF red and green LEDs of parking entrance respectively.
+			}
+			if(number of reserved parking slots equals the number of maximum parking slots){
+				Wait 1 second
+				Set number of free parking slots to 0
+				Print parking 1 free slots on serial communication
+				Print no slots message on parking's LCD 	
+			}
+		}
+	}
+	else if(parking's exit button is pressed and number of reserved slots is bigger than 0){
+		Turn ON and OFF green and red LEDs of parking exit respectively.
+		Raise exit bars
+		Wait 3 seconds
+		Calculate and store number of free slots in variable data
+		Print number of free parking slots on both serial communication and parking 1 LCD
+		Wait 3 seconds
+		while(exit FSR sensor is still being pressed){
+			Wait
+		}
+		if(exit FSR sensor is not being pressed){
+			Lower exit bars
+			Turn ON and OFF red and green LEDs of parking exit respectively.
+		}
+		
+	}
+	if(number of reserved parking slots is changed or fire code 1999 is about to be transmitted){
+		if(number of free slots equals number of maximum slots){
+			Data = free slots
+		}
+		Print transmitted value on serial communication
+		Load data in one packet
+		Flag_sent=FALSE;
+		while(!Flag_sent){
+			Try to send
+			if(ack){
+				Flag_Sent=true;
+				Increase successfulTrasmissions;
+			}
+			else{
+				Increase retransmissions;
+				Delay=Rand(uniform,0,max);
+				Wait(for Delay);
+			}
+		}
+	}
