@@ -11,7 +11,7 @@ The following sensors were used to measure the desired characteristics:
 - Capacitve Touch Sensor Switch Modules
 - Bluetooth module HC05
 - Waveshare Flame Sensors
-- Buzzer 
+- Buzzers
 - LCDs 6x2 Character (I2C Protocol)
 - Green and Red LEDs
 
