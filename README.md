@@ -2,6 +2,7 @@
 This assignment was part of the course Applications of Telecommunication Devices (Electrical and Computer Engineering Department, Aristotle University of Thessaloniki, 8th semester). The purpose of the assignment is to design a wireless sensor network using Arduino UNO, low cost sensors and the ALOHA protocol.
 
 #### Project description
+In this project, a citywide smart parking system has been implemented. Each parking has its own main processor, which is used to control the parking's entrance and its occupancy, leading each driver to the closest open spot. It also sends information about the number of empty spots on secondary processors located in central city roads, where this information is gathered and displayed on LCDs. It checks for  possible fires and notifies the fire department and the drivers if needed too. 
 
 The following sensors were used to measure the desired characteristics:
 - HC-SR04 Ultrasonic Ranging Sensors
