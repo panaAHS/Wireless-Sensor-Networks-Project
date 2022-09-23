@@ -21,3 +21,4 @@ The following sensors were used to measure the desired characteristics:
 The ALOHA protocol was used for wireless communication between network nodes. The ALOHA protocol is a low-complexity contention-based communication protocol.
 
 #### Contributors
+[Panagiotis Karamitopoulos](https://github.com/panaAHS)
