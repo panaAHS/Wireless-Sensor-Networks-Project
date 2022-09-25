@@ -26,4 +26,4 @@ The ALOHA protocol was used for wireless communication between network nodes. Th
 
 [Rafailia Saridaki](https://github.com/Rallu921)
 
-Leonidas Sidiropoulos
+[Leonidas Sidiropoulos]()
